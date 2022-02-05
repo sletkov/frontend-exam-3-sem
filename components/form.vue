@@ -1,5 +1,12 @@
 <template>
-    <form action="" v-if="formFields">
+    <form action="" v-if="formFields" @submit="checkForm">
+        <p v-if="errors.length" class="text-danger">
+            <b>Пожалуйста исправьте указанные ошибки:</b>
+        <ul>
+            <li v-for="error in errors">{{ error }}</li>
+        </ul>
+        </p>
+
         <div v-for="(field, index) in formFields" :key="index" class="form-group">
             <label class="form-label">{{field.title}}</label>
             <input  v-model="postData[index]" v-if="field.type === 'string'" type="text" class="form-control">
@@ -8,8 +15,10 @@
                     {{value}}
                 </option>
             </select>
+
         </div>
         <button  type="submit" class="btn btn-primary" @click="addAnimal()">Добавить</button>
+
     </form>
 </template>
 
@@ -21,9 +30,13 @@ export default {
         return {
             formFields: null,
             postData: {
-
+                type: '',
+                name: '',
+                weight: '',
+                color: '',
+                sex: '',
             },
-
+            errors: []
         }
     },
 
@@ -38,6 +51,30 @@ export default {
             } catch(e){
                 console.log(e);
             }
+        },
+        checkForm: function (e) {
+            if (this.name && this.age) {
+                return true;
+            }
+
+            this.errors = [];
+
+            if (!this.postData.type) {
+                this.errors.push('Требуется указать тип животного.');
+            }
+            if (!this.postData.name) {
+                this.errors.push('Требуется указать имя животного.');
+            }
+            if (!this.postData.weight) {
+                this.errors.push('Требуется указать вес животного.');
+            }
+            if (!this.postData.color) {
+                this.errors.push('Требуется указать цвет животного.');
+            }
+            if (!this.postData.sex  ) {
+                this.errors.push('Требуется указать пол животного.');
+            }
+
         }
     }
 
