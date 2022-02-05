@@ -1,9 +1,5 @@
 <template>
   <aside class="container" v-if="widgetInfo">
-<!--      <b>Левый виджет-->
-<!--          В нашем роддоме ежедневно рождаются десятки милейших зверушек-->
-<!--      </b>-->
-<!--      <img src="left_widget_img.jpg" alt="">-->
       <b>В нашем роддоме родилось:</b>
       <p>Добрейших коровок: {{ widgetInfo.cows }}</p>
       <p>Милейших кроликов: {{ widgetInfo.rabbits }}</p>

@@ -1,5 +1,5 @@
 <template>
-    <form action="" v-if="formFields" @submit="checkForm">
+    <form action="" v-if="formFields" @submit="checkForm" >
         <p v-if="errors.length" class="text-danger">
             <b>Пожалуйста исправьте указанные ошибки:</b>
         <ul>
@@ -53,7 +53,7 @@ export default {
             }
         },
         checkForm: function (e) {
-            if (this.name && this.age) {
+            if (this.postData.type && this.postData.name && this.postData.weight && this.postData.color && this.postData.sex) {
                 return true;
             }
 
@@ -74,7 +74,7 @@ export default {
             if (!this.postData.sex  ) {
                 this.errors.push('Требуется указать пол животного.');
             }
-
+            e.preventDefault();
         }
     }
 
