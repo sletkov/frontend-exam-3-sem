@@ -20,17 +20,17 @@
         <div class="row">
             <div class="col-md-6 mt-4">
                 <img src="../static/cow_img.jpg" alt="">
-                <p>Всего коров: </p>
+                <p>Всего коров: {{ cows }}</p>
             </div>
 
             <div  class="col-md-6 mt-4">
                 <img src="../static/rabbit_img.jpg" alt="">
-                <p>Всего кроликов: </p>
+                <p>Всего кроликов: {{ rabbits }}</p>
             </div>
 
             <div class="col-md-6 mt-4">
                 <img  src="../static/sheep_img.jpg" alt="">
-                <p>Всего овец: </p>
+                <p>Всего овец: {{ sheeps }}</p>
             </div>
 
         </div>
@@ -39,10 +39,8 @@
 
 <script>
 
-function Animal(animalType,count) {
-    this.animalType = animalType;
-    this.count = count
-}
+import axios from "axios";
+
 
 export default {
     name: "animals",
@@ -52,12 +50,34 @@ export default {
     },
     data() {
         return {
-            currentAnimalType : 'sheeps',
-            currentAnimalCount : 0,
             isFormVisible: false,
+            currentAnimalType: 'cows',
+            currentAnimalCount: 1,
+            cows: 0,
+            rabbits: 0,
+            sheeps: 0,
 
+            // animalsContent: null,
         }
     },
+    methods: {
+        addAnimals(animalType,count) {
+            switch (animalType) {
+                case('cows'):
+                    this.cows += count;
+                    break;
+                case('rabbits'):
+                    this.rabbits += count;
+                    break;
+                case('sheeps'):
+                    this.sheeps += count;
+                    break;
+            }
+        }
+    }
+    // async created() {
+    //         await axios.get('https://demo-api.vsdev.space/api/farm/home_page').then(response => this.animalsContent = response.data);
+    // }
 }
 </script>
 

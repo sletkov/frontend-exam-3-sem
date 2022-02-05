@@ -1,9 +1,13 @@
 <template>
   <aside class="container">
-      <b>В нашем роддоме родилось:</b>
-      <p>Добрейших коровок: {{ widgetInfo.cows }}</p>
-      <p>Милейших кроликов: {{ widgetInfo.rabbits }}</p>
-      <p>Пушистых овечек: {{ widgetInfo.sheeps }}</p>
+      <b>Левый виджет
+          В нашем роддоме ежедневно рождаются десятки милейших зверушек
+      </b>
+      <img src="left_widget_img.jpg" alt="">
+<!--      <b>В нашем роддоме родилось:</b>-->
+<!--      <p>Добрейших коровок: {{ widgetInfo.cows }}</p>-->
+<!--      <p>Милейших кроликов: {{ widgetInfo.rabbits }}</p>-->
+<!--      <p>Пушистых овечек: {{ widgetInfo.sheeps }}</p>-->
   </aside>
 </template>
 
@@ -17,9 +21,9 @@ export default {
             widgetInfo: null,
         }
     },
-    created() {
-        axios.get('https://demo-api.vsdev.space/api/farm/left_widget').then(response => this.widgetInfo = response.data);
-    }
+    // async created() {
+    //     await axios.get('https://demo-api.vsdev.space/api/farm/left_widget').then(response => this.widgetInfo = response.data);
+    // }
 
 }
 
